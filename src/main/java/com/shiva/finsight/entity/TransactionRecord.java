@@ -34,4 +34,12 @@ public class TransactionRecord {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
+
+
+    @PrePersist
+    public void prePersist() {
+        if (this.transactionDate == null) {
+            this.transactionDate = LocalDate.now();
+        }
+    }
 }
